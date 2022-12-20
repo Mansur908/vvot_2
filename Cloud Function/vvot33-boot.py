@@ -57,7 +57,7 @@ def main(event, context):
         if request_text == "/getface":
             try:
                 key = str(pool.retry_operation_sync(get_face)[0].rows[0].face_key)[2:-1]
-                photo = f"https://d5die7nqo05tbfampele.apigw.yandexcloud.net/?face={key}"
+                photo = f"{os.getenv('API_GATEWAY')}/?face={key}"
                 response_body = {
                     "method": "sendPhoto",
                     "chat_id": request_body['message']['chat']['id'],
