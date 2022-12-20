@@ -3,6 +3,7 @@ import io
 import requests
 import base64
 import json
+import os
 
 def handler(event, context):
     
@@ -45,7 +46,7 @@ def handler(event, context):
 
     for i in data['results'][0]['results'][0]['faceDetection']['faces']:
         client.send_message(
-            QueueUrl = "https://message-queue.api.cloud.yandex.net/b1g71e95h51okii30p25/dj600000000ajvc902mk/vvot00-tasks",
+            QueueUrl = os.getenv('QueueUrl'),
             MessageBody = "{" + f"\"photo\": \"{object_id}\", \"coordinates\": {i['boundingBox']['vertices']}" + "}"
         )
 
