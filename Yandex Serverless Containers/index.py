@@ -54,7 +54,7 @@ async def main(request):
 
 if __name__ == "__main__":
     driver_config = ydb.DriverConfig(
-        'grpcs://ydb.serverless.yandexcloud.net:2135', '/ru-central1/b1g71e95h51okii30p25/etntkv8rnj05lq862bru',
+        'grpcs://ydb.serverless.yandexcloud.net:2135', os.getenv('YDB_DATABASE'),
         credentials=ydb.construct_credentials_from_environ(),
         root_certificates=ydb.load_ydb_root_certificate(),
     )
